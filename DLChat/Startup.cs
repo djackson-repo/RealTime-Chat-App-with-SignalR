@@ -21,7 +21,8 @@ public class Startup
         services.Configure<DLChatDatabaseSettings>(
             Configuration.GetSection("DLChatDatabase"));
         services.AddSingleton<DLChatDatabaseSettings>(sp =>
-        sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
+            sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
+        services.AddSingleton<UserModel>();
         services.AddSingleton<UserServices>();
     }
 

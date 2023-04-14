@@ -7,12 +7,7 @@ namespace DLChat.Services
     public class UserServices
     {
         private readonly IMongoCollection<UserModel> _userCollection;
-        private readonly HttpClient _httpClient;
         
-        public UserServices(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
         public UserServices(
         IOptions<DLChatDatabaseSettings> dlChatDatabaseSettings)
         {
