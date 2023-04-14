@@ -1,3 +1,7 @@
+using DLChat.Models;
+using DLChat.Services;
+using Microsoft.Extensions.Options;
+
 namespace DLChat;
 
 public class Startup
@@ -13,6 +17,12 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
+        services.AddHttpClient();
+        services.Configure<DLChatDatabaseSettings>(
+            Configuration.GetSection("DLChatDatabase"));
+        services.AddSingleton<DLChatDatabaseSettings>(sp =>
+        sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
+        services.AddSingleton<UserServices>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
