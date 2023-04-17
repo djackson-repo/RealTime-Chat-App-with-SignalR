@@ -18,11 +18,9 @@ public class Startup
     {
         services.AddControllers();
         services.AddHttpClient();
-        services.Configure<DLChatDatabaseSettings>(
-            Configuration.GetSection("DLChatDatabase"));
+        services.Configure<DLChatDatabaseSettings>(Configuration.GetSection("DLChatDatabase"));
         services.AddSingleton<DLChatDatabaseSettings>(sp =>
             sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
-        services.AddSingleton<UserModel>();
         services.AddSingleton<UserServices>();
     }
 

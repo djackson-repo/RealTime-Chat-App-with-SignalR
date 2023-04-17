@@ -13,19 +13,25 @@ namespace DLChat.Controllers
         public UserController(UserServices userServices) =>
             _userServices = userServices;
         [HttpGet]
-        public async Task<List<UserModel>> Get() =>
-            await _userServices.GetAsync();
-/*        [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<UserModel>> Get(string id)
+        public async Task<IActionResult> GetUsers()
         {
-            var user = await _userServices.GetAsync(id);
-
-            if (user is null)
+            try
             {
-                return NotFound();
-            }
+                Console.WriteLine("UserController.GetUsers() fetching users");
 
-            return user;
-        }*/
+                var user = await _userServices.GetAsync();
+                if (user == null) { return NotFound(); }
+                return new ObjectResult(user);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("UserController.GetUsers() got error: " + ex.Message + ", Stack = " + ex.StackTrace);
+                return StatusCode(500);
+            }
+        }
+
+
     }
 }
+
