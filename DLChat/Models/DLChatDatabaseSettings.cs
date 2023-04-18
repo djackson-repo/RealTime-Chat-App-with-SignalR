@@ -2,9 +2,9 @@
 {
     public class DLChatDatabaseSettings
     {
-        public string ConnectionString { get; set; } = null!;
-        public string DatabaseName { get; set; } = null!;
-        public string UsersCollectionName { get; set; } = null!;
-        public string ChatCollectionName { get; set; } = null!;
+        public string ConnectionString { get; set; } = "mongodb+srv://djackson:FRFAFBfdy0ePu0Yv@cluster0.4oootwq.mongodb.net/test";
+        public string DatabaseName { get; set; } = "DLChat";
+        public string UsersCollectionName { get; set; } = "users";
+        public string ChatCollectionName { get; set; } = "chat";
     }
 }

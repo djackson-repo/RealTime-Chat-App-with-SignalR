@@ -19,8 +19,7 @@ public class Startup
         services.AddControllers();
         services.AddHttpClient();
         services.Configure<DLChatDatabaseSettings>(Configuration.GetSection("DLChatDatabase"));
-        services.AddSingleton<DLChatDatabaseSettings>(sp =>
-            sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
+        services.AddTransient<DLChatDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
         services.AddSingleton<UserServices>();
     }
 
