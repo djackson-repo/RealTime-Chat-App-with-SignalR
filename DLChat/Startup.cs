@@ -20,7 +20,9 @@ public class Startup
         services.AddHttpClient();
         services.Configure<DLChatDatabaseSettings>(Configuration.GetSection("DLChatDatabase"));
         services.AddTransient<DLChatDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DLChatDatabaseSettings>>().Value);
-        services.AddSingleton<UserServices>();
+        services.AddTransient<UserServices>();
+        services.AddTransient<ChatRoomServices>();
+        services.AddTransient<ChatMessageServices>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

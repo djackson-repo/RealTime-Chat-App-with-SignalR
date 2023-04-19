@@ -1,5 +1,4 @@
-﻿using DLChat.Models;
-using DLChat.Services;
+﻿using DLChat.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DLChat.Controllers
@@ -10,8 +9,11 @@ namespace DLChat.Controllers
     {
         private readonly UserServices _userServices;
 
-        public UserController(UserServices userServices) =>
+        public UserController(UserServices userServices)
+        {
             _userServices = userServices;
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
