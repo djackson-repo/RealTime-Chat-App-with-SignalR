@@ -18,5 +18,7 @@ namespace DLChat.Services
         }
 
         public async Task<List<UserModel>> GetAsync() => await _userCollection.Find(_ => true).ToListAsync();
+
+
     }
 }

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./app.component.sass']
 })
 export class HomeComponent {
   title = 'ClientApp';

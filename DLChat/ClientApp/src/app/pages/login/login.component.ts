@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./app.component.sass']
 })
-export class LoginComponent {
-  title = 'ClientApp';
+export class LoginComponent implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+}
+
+export interface UserModel {
+  name: string;
+  password: string;
+}
+export interface AuthenticatedResponse {
+  token: string;
 }

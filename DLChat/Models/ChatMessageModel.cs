@@ -9,8 +9,9 @@ namespace DLChat.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-        public string UserId { get; set; } = null!;
-        public string Message { get; set; } = null!;
+        public string userId { get; set; } = null!;
+        public string chatRoomId { get; set; } = null!;
+        public string message { get; set; } = null!;
  //       public DateTime Timestamp { get; set; }
 
 

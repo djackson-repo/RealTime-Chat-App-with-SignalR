@@ -1,4 +1,6 @@
-﻿using DLChat.Services;
+﻿using DLChat.Models;
+using DLChat.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DLChat.Controllers
@@ -32,6 +34,38 @@ namespace DLChat.Controllers
                 return StatusCode(500);
             }
         }
+
+
+        /*[HttpPost("[action]")]
+        public IActionResult Post([FromBody] UserModel value)
+        {
+            try
+            {
+                Console.WriteLine("UserController.Post() posting a new item");
+
+                    if (String.IsNullOrWhiteSpace(value.name))
+                    {
+                        return BadRequest("Missing username");
+                    }
+                    if (String.IsNullOrWhiteSpace(value.password))
+                    {
+                        return BadRequest("Missing password");
+                    }
+                    if (db.User.FirstOrDefault(x => x.Name == value.name && x.Password == value.password) == null)
+                    {
+                        return NotFound("Invalid username or password");
+                    }
+
+                    return new OkResult();
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("CustomerController.Post() got error: " + ex.Message + ", Stack = " + ex.StackTrace);
+                return StatusCode(500);
+            }
+        }*/
 
 
     }
