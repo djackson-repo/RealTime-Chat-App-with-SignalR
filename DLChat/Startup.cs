@@ -23,23 +23,21 @@ public class Startup
         services.AddSignalR(); //SignalR
         services.AddLogging(); //SignalR
 
-        services.AddAuthentication(opt => { // JSON WEB TOGENS
-            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         })
-    .AddJwtBearer(options =>
-     {
-         options.TokenValidationParameters = new TokenValidationParameters // JSONWEBTOKENS
-         {
-             ValidateIssuer = true,
-             ValidateAudience = true,
-             ValidateLifetime = true,
-             ValidateIssuerSigningKey = true,
-             ValidIssuer = "https://r8mevslq8d.execute-api.us-east-1.amazonaws.com/Prod/", // Local Host "https://localhost:59446/"
-             ValidAudience = "https://localhost:4200",
-             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DylanAndLiamKey@312"))
-         };
-     });
+        .AddJwtBearer(options =>
+        {
+            options.Authority = Configuration["Cognito:Authority"];
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                ValidateAudience = false
+            };
+        });
+
         services.AddCors(options =>
         {
             options.AddPolicy("EnableCORS", builder =>  
@@ -74,6 +72,7 @@ public class Startup
 
         app.UseCors("EnableCORS");
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>

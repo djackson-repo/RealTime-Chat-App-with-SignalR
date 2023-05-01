@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
-  { path: 'chatRoom', component: ChatRoomComponent },
-  { path: 'search', component: SearchComponent },];
+  { path: 'chatRoom/:id', component: ChatRoomComponent },
+  { path: 'search/:id', component: SearchComponent },];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -35,6 +35,30 @@ namespace DLChat.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetUsersByName(string username)
+        {
+            try
+            {
+                Console.WriteLine("UserController.GetUsersByName() fetching users");
+
+                var user = await _userServices.GetUserByName(username);
+                if (user == null) { return NotFound(); }
+                List<string> usernames = new List<string>();
+                for (int i = 0; i < user.Count && user != null; i++)
+                {
+                    usernames.Add(user[i].name);
+                }
+                return new ObjectResult(usernames);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("UserController.GetUsers() got error: " + ex.Message + ", Stack = " + ex.StackTrace);
+                return StatusCode(500);
+            }
+        }
+
 
         /*[HttpPost("[action]")]
         public IActionResult Post([FromBody] UserModel value)

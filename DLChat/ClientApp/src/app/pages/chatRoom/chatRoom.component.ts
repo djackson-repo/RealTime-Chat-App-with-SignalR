@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 @Component({
@@ -7,6 +8,14 @@ import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 })
 export class ChatRoomComponent {
   private hubConnection: HubConnection;
+  chatRoomId = "";
+  public constructor(
+    private _route: ActivatedRoute)
+  {
+    let id = this._route.snapshot.paramMap.get('id');
+    this.chatRoomId = id;
+  }
+
 
   public sendMessage() {
     this.hubConnection.invoke('SendMessage', 'testmessage');

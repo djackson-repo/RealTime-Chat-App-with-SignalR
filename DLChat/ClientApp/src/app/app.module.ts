@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -18,17 +21,20 @@ import { SignupComponent } from './pages/signup/signup.component';
     LoginComponent,
     SignupComponent,
     SearchComponent,
+
     
   ],
   imports: [
+    FormsModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
+      { path: 'home', component: HomeComponent },
+      { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'signup', component: SignupComponent },
-      { path: 'chatRoom', component: ChatRoomComponent },
-      { path: 'search', component: SearchComponent },
+      { path: 'chatRoom/:id', component: ChatRoomComponent },
+      { path: 'search/:id', component: SearchComponent },
     ]),
   ],
   providers: [],
