@@ -9,7 +9,7 @@ import { UserService } from '../../../services/user-service';
   providers: [UserService]
 })
 export class SearchComponent {
-  users: string[] = [];
+  users: UserModel[] = [];
   title = 'ClientApp';
   userName = ''
   public constructor(
@@ -17,26 +17,29 @@ export class SearchComponent {
     private userService: UserService,
   )
   {
-    let id = this._route.snapshot.paramMap.get('id');
-    this.userName = id;
+    
   }
 
   ngOnInit() {
+    let id = this._route.snapshot.paramMap.get('id');
+    this.userName = id;
+    console.log("reload search for: " + this.userName);
     this.UsersFound();
   }
 
   public UsersFound() {
-    for (let i = 0; i < this.users.length; i++) {
-      this.userService.GetUserByName(this.userName).subscribe(
-        (result: string[]) => {
-          this.users = result;
-          console.log('got users: ', this.users)
-        },
-        error => {
-          console.error(error);
-        }
-      );
-      console.log('done');
-    }
+    console.log("UserFound")
+    this.userService.GetUserByName(this.userName).subscribe(
+      (result: UserModel[]) => {
+        this.users = result;
+        console.log('got users: ', this.users)
+      },
+      error => {
+        console.error(error);
+      }
+    );
+    console.log('done');
   }
+
+  // Create method that adds a user to a chat
 }

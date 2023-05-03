@@ -12,9 +12,4 @@ namespace DLChat.Models
 
         public string password { get; set; } = null!;
     }
-
-    public class AuthenticatedResponse
-    {
-        public string? Token { get; set; }
-    }
 }

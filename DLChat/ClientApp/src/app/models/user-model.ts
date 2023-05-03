@@ -4,7 +4,7 @@
       public selected?= false;
 
       // these are database mapped, come from the API calls
-      public Id: string = '';
+      public id: string = '';
       public password: string = '';
       public name: string = '';
 

@@ -4,7 +4,7 @@
       public selected?= false;
 
       // these are database mapped, come from the API calls
-      public Id: string = '';
+      public id: string = '';
       public userId: string = '';
       public chatRoomId: string = '';
       public message: string = '';

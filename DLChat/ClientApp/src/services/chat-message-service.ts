@@ -5,7 +5,7 @@ import { ChatMessageModel } from "../app/models/chat-message-model";
 
 @Injectable()
 export class ChatMessageService {
-  baseUrl = 'https://r8mevslq8d.execute-api.us-east-1.amazonaws.com/Prod';
+  baseUrl = 'https://localhost:59446/';
   constructor(
     private http: HttpClient) { }
 

@@ -2,6 +2,7 @@
 using DLChat.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace DLChat.Controllers
 {
@@ -35,21 +36,16 @@ namespace DLChat.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetUsersByName(string username)
+        [HttpGet("[action]/{username}")]
+        public async Task<IActionResult> GetUserByName(string username)
         {
             try
             {
                 Console.WriteLine("UserController.GetUsersByName() fetching users");
 
-                var user = await _userServices.GetUserByName(username);
-                if (user == null) { return NotFound(); }
-                List<string> usernames = new List<string>();
-                for (int i = 0; i < user.Count && user != null; i++)
-                {
-                    usernames.Add(user[i].name);
-                }
-                return new ObjectResult(usernames);
+                List<UserModel> users = await _userServices.GetUserByName(username);
+                if (users is null) { return NotFound(); }
+                return new ObjectResult(users);
 
             }
             catch (Exception ex)
@@ -58,39 +54,6 @@ namespace DLChat.Controllers
                 return StatusCode(500);
             }
         }
-
-
-        /*[HttpPost("[action]")]
-        public IActionResult Post([FromBody] UserModel value)
-        {
-            try
-            {
-                Console.WriteLine("UserController.Post() posting a new item");
-
-                    if (String.IsNullOrWhiteSpace(value.name))
-                    {
-                        return BadRequest("Missing username");
-                    }
-                    if (String.IsNullOrWhiteSpace(value.password))
-                    {
-                        return BadRequest("Missing password");
-                    }
-                    if (db.User.FirstOrDefault(x => x.Name == value.name && x.Password == value.password) == null)
-                    {
-                        return NotFound("Invalid username or password");
-                    }
-
-                    return new OkResult();
-                
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("CustomerController.Post() got error: " + ex.Message + ", Stack = " + ex.StackTrace);
-                return StatusCode(500);
-            }
-        }*/
-
 
     }
 }

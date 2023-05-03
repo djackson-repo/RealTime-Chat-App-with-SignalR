@@ -19,12 +19,31 @@ namespace DLChat.Services
 
         public async Task<List<ChatRoomModel>> GetAsync() => await _chatRoomCollection.Find(_ => true).ToListAsync();
 
-        public async Task CreateAsync(ChatRoomModel newRoom) => await _chatRoomCollection.InsertOneAsync(newRoom);
+        public async Task CreateAsync(ChatRoomModel newRoom)
+        {
+            try
+            {
+                await _chatRoomCollection.InsertOneAsync(newRoom);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+
+        }
 
         public async Task<List<ChatRoomModel>> GetUserChatRooms(string userId)
         {
-            var result = await _chatRoomCollection.Find(x => x.users.Contains(userId)).ToListAsync();
-            return result;
+            try
+            {
+                return await _chatRoomCollection.Find(x => x.users.Contains(userId)).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return null;
+            }
+            
         }
     }
 }

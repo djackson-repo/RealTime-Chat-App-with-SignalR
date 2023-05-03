@@ -33,12 +33,13 @@ namespace DLChat.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateNewRoom(ChatRoomModel nowRoom)
+        public async Task<IActionResult> CreateNewRoom(ChatRoomModel newRoom)
         {
             try
             {
-                await _chatRoomServices.CreateAsync(nowRoom);
-                return CreatedAtAction(nameof(GetChatRooms), new { id = nowRoom.Id }, nowRoom);
+                newRoom.Id = null;
+                await _chatRoomServices.CreateAsync(newRoom);
+                return CreatedAtAction(nameof(GetChatRooms), new { id = newRoom.Id }, newRoom);
             }
             catch (Exception ex)
             {
@@ -46,7 +47,7 @@ namespace DLChat.Controllers
                 return StatusCode(500);
             }
         }
-        [HttpPost]
+        [HttpGet("[action]/{userId}")]
         public async Task<IActionResult> GetUserChatRooms(string userId)
         {
             try

@@ -12,8 +12,7 @@ export class ChatRoomComponent {
   public constructor(
     private _route: ActivatedRoute)
   {
-    let id = this._route.snapshot.paramMap.get('id');
-    this.chatRoomId = id;
+    
   }
 
 
@@ -23,6 +22,16 @@ export class ChatRoomComponent {
   }
 
   ngOnInit() {
+    let id = this._route.snapshot.paramMap.get('id');
+    this.chatRoomId = id;
+    this.ConnectHub();
+  }
+
+  // create method that adds a message using the userId and roomId
+
+  // create method that actively updates the user messages
+
+  public ConnectHub() {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl('https://localhost:59446/chatHub')
       .build();
