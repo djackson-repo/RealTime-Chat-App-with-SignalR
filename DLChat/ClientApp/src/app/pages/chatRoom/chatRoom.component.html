@@ -1,11 +1,5 @@
-<h1>{{roomInfo.chatName}}</h1>
-
-<div class="chat-container">
-  <div class="message-container">
-    <div *ngFor="let message of chatMessages; let i = index">
-      {{ message. }}
-    </div>
-  </div>
-  <input type="text" [(ngModel)]="newMessageText" placeholder="Enter your message">
-  <button (click)="CreateMessage()">Send</button>
+<div>
+  <body>
+    <button (click)="sendMessage()">Send Message</button>
+  </body>
 </div>

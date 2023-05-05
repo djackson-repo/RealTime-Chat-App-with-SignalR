@@ -13,6 +13,7 @@ export class HomeComponent {
   searchTerm: string;
   userId: string = '643785174997d3872d9363a6';
   chatRooms: ChatRoomModel[];
+  newChatName: string;
   title = 'ClientApp';
   constructor(
     private _router: Router,
@@ -51,7 +52,18 @@ export class HomeComponent {
 
   //create a method to create a new chatRoom
   public CreateRoom() {
-    this._router.navigate(['/newRoom']);
+    console.log("Creating a new room with");
+    var newChatRoom: ChatRoomModel;
+    newChatRoom.chatName = this.newChatName
+    newChatRoom.admins = [this.userId]
+    newChatRoom.users = [this.userId]
+    this.chatRoomService.CreateNewRoom(newChatRoom).subscribe((result) =>
+    {
+      console.log("entering new ChatRoom as: " + newChatRoom.chatName);
+    },
+      error => {
+        console.error(error);
+      })
   }
 
 }

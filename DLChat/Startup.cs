@@ -42,7 +42,7 @@ public class Startup
         {
             options.AddPolicy("EnableCORS", builder =>  
                 builder
-                .WithOrigins("http://localhost:4200", "http://localhost:61409")
+                .WithOrigins("http://localhost:4200")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials());
@@ -71,7 +71,6 @@ public class Startup
         app.UseRouting();
 
         app.UseCors("EnableCORS");
-        app.UseWebSockets();
 
         app.UseAuthentication();
         app.UseAuthorization();

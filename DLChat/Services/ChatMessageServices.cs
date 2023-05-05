@@ -23,28 +23,14 @@ namespace DLChat.Services
 
         public async Task<List<ChatMessageModel>> GetMessages(string chatRoomId, string userId)
         {
-            try
-            {
                 var result = await _chatMessageCollection.Find(x => x.chatRoomId == chatRoomId && x.userId == userId).ToListAsync();
                 return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.StackTrace);
-                return null;
-            }
         }
         public async Task CreateMessage(ChatMessageModel newMessage)
         {
-            try
-            {
-                await _chatMessageCollection.InsertOneAsync(newMessage);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.StackTrace);
-            }
+            await _chatMessageCollection.InsertOneAsync(newMessage);
         }
+        
 
     }
 }

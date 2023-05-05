@@ -9,9 +9,8 @@ import { ChatRoomComponent } from './pages/chatRoom/chatRoom.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
-import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './pages/signup/signup.component';
-import { newRoomComponent } from './pages/newRoom/newRoom.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { newRoomComponent } from './pages/newRoom/newRoom.component';
     ChatRoomComponent,
     HomeComponent,
     LoginComponent,
-    newRoomComponent,
     SignupComponent,
     SearchComponent,
 
@@ -32,7 +30,6 @@ import { newRoomComponent } from './pages/newRoom/newRoom.component';
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: 'newRoom', component: newRoomComponent },
       { path: 'home', component: HomeComponent },
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'signup', component: SignupComponent },
