@@ -17,7 +17,19 @@ namespace DLChat.Services
             _chatRoomCollection = mongoDatabase.GetCollection<ChatRoomModel>(dlChatDatabaseSettings.Value.ChatRoomCollectionName);
         }
 
-        public async Task<List<ChatRoomModel>> GetAsync() => await _chatRoomCollection.Find(_ => true).ToListAsync();
+        public async Task<List<ChatRoomModel>> GetAsync()
+        {
+            try
+            {
+                return await _chatRoomCollection.Find(_ => true).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return null;
+            }
+
+        }
 
         public async Task CreateAsync(ChatRoomModel newRoom)
         {
@@ -43,7 +55,21 @@ namespace DLChat.Services
                 Console.WriteLine(ex.StackTrace);
                 return null;
             }
-            
+        }
+
+        public async Task<ChatRoomModel> GetRoomInfo(string chatRoomId)
+        {
+            try
+            {
+                var result = await _chatRoomCollection.Find(x => x.Id == chatRoomId).FirstOrDefaultAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return null;
+            }
+
         }
     }
 }

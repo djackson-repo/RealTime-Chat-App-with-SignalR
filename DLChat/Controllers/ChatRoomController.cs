@@ -14,8 +14,9 @@ namespace DLChat.Controllers
         {
             _chatRoomServices = chatRoomServices;
         }
+
         [HttpGet]
-        public async Task<IActionResult> GetChatRooms()
+        public async Task<IActionResult> Get()
         {
             try
             {
@@ -33,13 +34,13 @@ namespace DLChat.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateNewRoom(ChatRoomModel newRoom)
+        public async Task<IActionResult> Post(ChatRoomModel newRoom)
         {
             try
             {
                 newRoom.Id = null;
                 await _chatRoomServices.CreateAsync(newRoom);
-                return CreatedAtAction(nameof(GetChatRooms), new { id = newRoom.Id }, newRoom);
+                return CreatedAtAction(nameof(Get), new { id = newRoom.Id }, newRoom);
             }
             catch (Exception ex)
             {
@@ -47,6 +48,7 @@ namespace DLChat.Controllers
                 return StatusCode(500);
             }
         }
+
         [HttpGet("[action]/{userId}")]
         public async Task<IActionResult> GetUserChatRooms(string userId)
         {
@@ -66,6 +68,24 @@ namespace DLChat.Controllers
             }
         }
 
+        [HttpGet("[action]/{chatRoomId}")]
+        public async Task<IActionResult> GetRoomInfo(string chatRoomId)
+        {
+            try
+            {
+                Console.WriteLine("ChatRoomController.GetUserChatRooms() fetching Chat Rooms");
+
+                var chatRoom = await _chatRoomServices.GetRoomInfo(chatRoomId);
+                if (chatRoom == null) { return NotFound(); }
+                return new ObjectResult(chatRoom);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ChatRoomController.GetChatRooms() got error: " + ex.Message + ", Stack = " + ex.StackTrace);
+                return StatusCode(500);
+            }
+        }
 
     }
 }

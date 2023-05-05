@@ -11,12 +11,25 @@ export class ChatRoomService {
   constructor(
     private http: HttpClient) { }
 
+  public GetRooms(): Observable<ChatRoomModel[]> {
+    let url = this.baseUrl + 'api/ChatRoom/';
+    return this.http.get<ChatRoomModel[]>(url);
+  }
+
   public GetChatRoomUser(userId: string): Observable<ChatRoomModel[]> {
     let url = this.baseUrl + 'api/ChatRoom/GetUserChatRooms/' + userId;
     return this.http.get<ChatRoomModel[]>(url);
   }
+
   public CreateNewRoom(chatRoom: ChatRoomModel): Observable<ChatRoomModel> {
-    let url = this.baseUrl + 'api/ChatRoom/CreateNewRoom' + chatRoom;
-    return this.http.post<ChatRoomModel>(this.baseUrl + 'api/ChatRoom/CreateNewRoom', chatRoom);
+    console.log("creating new room:" + chatRoom.id);
+    let url = this.baseUrl + 'api/ChatRoom/';
+    return this.http.post<ChatRoomModel>(url, chatRoom);
   }
+
+  public GetRoomInfo(chatRoomId: string): Observable<ChatRoomModel> {
+    let url = this.baseUrl + 'api/ChatRoom/GetRoomInfo/' + chatRoomId;
+    return this.http.get<ChatRoomModel>(url);
+  }
+
 }
