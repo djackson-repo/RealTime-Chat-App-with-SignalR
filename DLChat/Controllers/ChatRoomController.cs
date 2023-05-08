@@ -87,5 +87,26 @@ namespace DLChat.Controllers
             }
         }
 
+        [HttpPut("{id:length(24)}")]
+        public async Task<IActionResult> Update(string chatId, string userId)
+        {
+            try
+            {
+                var chat = await _chatRoomServices.GetRoomInfo(chatId);
+                if(chat is null)
+                {
+                    return NotFound();
+                }
+                chat.users.Append(userId);
+                await _chatRoomServices.UpdateAsync(chatId, chat);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ChatRoomController.GetChatRooms() got error: " + ex.Message + ", Stack = " + ex.StackTrace);
+                return StatusCode(500);
+            }
+        }
+
     }
 }

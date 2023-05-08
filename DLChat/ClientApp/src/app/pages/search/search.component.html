@@ -1,15 +1,87 @@
-<h1>search for '{{userName}}' </h1>
-<div class="listing">
-  <div *ngIf="!users">
-    <p>loading...</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <style>
+    /* Set global font styles */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* Add spacing and center title */
+    h1 {
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    /* Style loading message */
+    .loading {
+      text-align: center;
+      margin-top: 3rem;
+      font-style: italic;
+    }
+
+    /* Style table headers */
+    th {
+      font-weight: bold;
+    }
+
+    /* Add alternating row colors */
+    tr:nth-child(odd) {
+      background-color: #f7f7f7;
+    }
+
+    /* Style dropdown menu */
+    select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+    }
+
+    /* Style Add User button */
+    .add-user-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+      /* Style Add User button on hover */
+      .add-user-btn:hover {
+        background-color: #0069d9;
+      }
+  </style>
+</head>
+<body>
+  <div class="listing">
+    <h1>Search for '{{userName}}'</h1>
+
+    <div *ngIf="IsEmpty()" class="loading-container">
+      <p>Loading...</p>
+    </div>
+
+    <table>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.name}}</td>
+          <td>
+            <select [(ngModel)]="selectedRoom">
+              <option *ngFor="let room of chatRooms" [value]="room.id">{{ room.chatName }}</option>
+            </select>
+          </td>
+          <td>
+            <button class="add-user-btn" (click)="AddUser(user.id, selectedRoom)">Add User to Chat</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <table class="table">
-      <tr>
-      </tr>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{user.name}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</body>
+</html>

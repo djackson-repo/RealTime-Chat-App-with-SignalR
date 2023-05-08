@@ -1,11 +1,79 @@
-<h1>{{roomInfo.chatName}}</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Room</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
 
-<div class="chat-container">
-  <div class="message-container">
-    <div *ngFor="let message of chatMessages; let i = index">
-      {{ message. }}
+    h1 {
+      font-size: 24px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .chat-container {
+      width: 80%;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    .message-container {
+      height: 300px;
+      overflow-y: scroll;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+      .message-container div {
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+      }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: none;
+      border-radius: 4px;
+      background-color: #f2f2f2;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+      button:hover {
+        background-color: #45a049;
+      }
+  </style>
+</head>
+<body>
+  <h1>{{roomInfo.chatName}}</h1>
+
+  <div class="chat-container">
+    <div class="message-container">
+      <div *ngFor="let message of chatMessages; let i = index">
+        {{ message }}
+      </div>
     </div>
+    <input type="text" [(ngModel)]="newMessageText" placeholder="Enter your message">
+    <button (click)="CreateMessage()">Send</button>
   </div>
-  <input type="text" [(ngModel)]="newMessageText" placeholder="Enter your message">
-  <button (click)="CreateMessage()">Send</button>
-</div>
+</body>
+</html>

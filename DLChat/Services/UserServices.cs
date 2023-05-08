@@ -38,8 +38,6 @@ namespace DLChat.Services
                 Console.WriteLine(ex.StackTrace);
                 return null;
             }
-    // await _userCollection.Find(x => x.name.Contains(username)).ToListAsync();
-}
-
+        }
     }
 }

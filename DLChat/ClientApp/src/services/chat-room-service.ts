@@ -6,8 +6,8 @@ import * as e from "express";
 
 @Injectable()
 export class ChatRoomService {
-  baseUrl = 'https://localhost:59446/';
-  //baseUrl = 'https://r8mevslq8d.execute-api.us-east-1.amazonaws.com/Prod';
+/*  baseUrl = 'https://localhost:59446/';*/
+  baseUrl = 'https://r8mevslq8d.execute-api.us-east-1.amazonaws.com/Prod/';
   constructor(
     private http: HttpClient) { }
 
@@ -30,6 +30,12 @@ export class ChatRoomService {
   public GetRoomInfo(chatRoomId: string): Observable<ChatRoomModel> {
     let url = this.baseUrl + 'api/ChatRoom/GetRoomInfo/' + chatRoomId;
     return this.http.get<ChatRoomModel>(url);
+  }
+
+  public Update(chatId: string, userId: string): Observable<ChatRoomModel> {
+    console.log("creating new room:" + chatId);
+    let url = this.baseUrl + 'api/ChatRoom/' + chatId;
+    return this.http.put<ChatRoomModel>(url, userId);
   }
 
 }

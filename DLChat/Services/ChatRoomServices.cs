@@ -71,6 +71,20 @@ namespace DLChat.Services
             }
 
         }
+
+        public async Task UpdateAsync(string id, ChatRoomModel updatedRoom)
+        {
+            try
+            {
+                await _chatRoomCollection.ReplaceOneAsync(x => x.Id == id, updatedRoom);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+
+        }
+       
     }
 }
 

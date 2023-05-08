@@ -79,7 +79,7 @@ export class ChatRoomComponent {
           
         },
         error => {
-          console.error(error);
+          console.error(error); 
         })
     }
   }
