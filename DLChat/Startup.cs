@@ -40,13 +40,14 @@ public class Startup
 
         services.AddCors(options =>
         {
-            options.AddPolicy("EnableCORS", builder =>  
+            options.AddPolicy("EnableCORS", builder =>
                 builder
-                .WithOrigins("http://localhost:4200", "http://localhost:56987")
+                .WithOrigins("http://localhost:4200", "http://linfield.dylan.2023.s3-website-us-east-1.amazonaws.com")
+                /*                .AllowAnyOrigin()*/
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials());
-        });
+    });
 
         services.AddControllers();
         services.AddHttpClient();

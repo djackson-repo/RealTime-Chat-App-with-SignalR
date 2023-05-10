@@ -7,7 +7,7 @@
       public id: string = '';
       public password: string = '';
       public name: string = '';
-
+      public token: string = '';
       constructor(init?: Partial<UserModel>) { // allows us to assign this object C# style
         Object.assign(this, init); // copies all the properties of 'init' that exist in the 'this' object
       }

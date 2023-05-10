@@ -25,10 +25,11 @@ export class newRoomComponent {
     newChatRoom.users = [this.userId]
     this.chatRoomService.CreateNewRoom(newChatRoom).subscribe((result) => {
       console.log("entering new ChatRoom as: " + newChatRoom.chatName);
+      this._router.navigate(['/home']);
     },
       error => {
         console.error(error);
       })
-    this._router.navigate(['/home'])
+    
   }
 }
