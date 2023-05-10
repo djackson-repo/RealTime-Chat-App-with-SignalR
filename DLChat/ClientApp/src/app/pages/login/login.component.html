@@ -39,11 +39,11 @@
   </style>
 </head>
 <body>
-  <form action="" method="post">
+  <form (submit)="login(userModel.name, userModel.password)">
     <label for="username">Username:</label>
-    <input type="text" id="user" name="user" placeholder="Enter your username" required>
+    <input type="text" id="user" [(ngModel)]="userModel.name" name="user" placeholder="Enter your username" required>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    <input type="password" id="password" [(ngModel)]="userModel.password" name="password" placeholder="Enter your password" required>
     <input type="submit" value="Login">
   </form>
 </body>

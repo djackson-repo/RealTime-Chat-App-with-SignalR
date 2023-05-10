@@ -55,6 +55,8 @@ public class Startup
         services.AddTransient<UserServices>();
         services.AddTransient<ChatRoomServices>();
         services.AddTransient<ChatMessageServices>();
+        services.AddTransient<LoginServices>();
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

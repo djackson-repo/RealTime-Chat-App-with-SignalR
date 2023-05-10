@@ -5,8 +5,8 @@ import { UserModel } from "../app/pages/login/login.component";
 
 @Injectable()
 export class UserService {
-/*  baseUrl = 'https://localhost:59446/';*/
-  baseUrl = 'https://r8mevslq8d.execute-api.us-east-1.amazonaws.com/Prod/';
+  baseUrl = 'https://localhost:59446/';
+/*  baseUrl = 'https://r8mevslq8d.execute-api.us-east-1.amazonaws.com/Prod/';*/
   constructor(
     private http: HttpClient) { }
 
