@@ -34,6 +34,7 @@ export class SearchComponent {
     this.SearchRooms();
   }
 
+  // finds all of the users using the term that is searched for
   public UsersFound() {
     console.log("UserFound")
     this.userService.GetUserByName(this.userName).subscribe(
@@ -48,6 +49,7 @@ export class SearchComponent {
     console.log('done');
   }
 
+  // gets all of the rooms that the logged in user is in
   public SearchRooms() {
     console.log("SearchRooms with user: " + this.userId)
     this.chatRoomService.GetChatRoomUser(this.userId).subscribe(

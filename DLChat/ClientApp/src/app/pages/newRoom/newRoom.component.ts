@@ -17,6 +17,8 @@ export class newRoomComponent {
     private _router: Router,
   ) { }
 
+
+  //creates the room and the moment that the room is posted to the database it sends you back to home
   public CreateRoom() {
     console.log("Creating a new room with:" + this.newChatName);
     var newChatRoom: ChatRoomModel = new ChatRoomModel();

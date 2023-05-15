@@ -26,7 +26,7 @@ export class ChatRoomComponent {
   )
   {}
 
-
+  // test send message
   public sendMessage() {
     this.hubConnection.invoke('SendMessage', this.newMessageText);
     console.log(this.chatMessages);
@@ -43,7 +43,7 @@ export class ChatRoomComponent {
 
   }
 
-  // create method that adds a message using the userId and roomId
+  // creates a message and when the message is sent it updates all of the active users on the room
   public CreateMessage() {
     var newMessage = new ChatMessageModel();
     this.hubConnection.invoke('SendMessage', this.userId + ': ' + this.newMessageText);
@@ -62,7 +62,7 @@ export class ChatRoomComponent {
     
   }
 
-  // create method that actively updates the user messages
+  // Method that grabs all of the messages from the users
   public GetMessages() {
     console.log("get messages with:" + this.roomInfo.chatName)
     for (var i = 0; i < this.roomInfo.users.length; i++) {
@@ -84,6 +84,7 @@ export class ChatRoomComponent {
     }
   }
 
+  //Gets the room information such as the users and roomName etc.
   public RoomInfo() {
     this.chatRoomService.GetRoomInfo(this.chatRoomId).subscribe(
       (result: ChatRoomModel) => {
@@ -97,7 +98,7 @@ export class ChatRoomComponent {
     )
   }
 
-
+  // Connects the SignalR Hub to the local host API
   public ConnectHub() {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl('https://localhost:59446/chatHub')

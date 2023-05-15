@@ -25,10 +25,12 @@ export class HomeComponent {
     this.SearchRooms();
   }
 
+  //Navigates to the searched term search
   public SearchForUser() {
     console.log("SearchButtonPressed for: " + this.searchTerm);
     this._router.navigate(['/search', this.searchTerm]);
   }
+  //Navigates to the selected chat
   public NavigateToChat(chatId: string) {
     console.log("NavToChatButton for: " + chatId);
     this._router.navigate(['/chatRoom', chatId]);
